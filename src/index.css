@@ -1,10 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-   margin:0;
-   padding:0;
+   margin: 0;
+   padding: 0;
    box-sizing: border-box;
-   color:inherit;
+   color: inherit;
+   font-family: 'Roboto', sans-serif;
+}
+
+@layer utilities {
+   .logo-gradient {
+      background-image: linear-gradient(85deg, #a3a9ff, #ff94b3);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+   }
+}
+
+body {
+   background-color: lavender;
 }
