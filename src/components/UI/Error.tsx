@@ -1,4 +1,4 @@
-import ErrorWarrningIcon from '@/icons/ErrorWarrningIcon';
+import ErrorWarrningIcon from '@/components/icons/ErrorWarrningIcon';
 
 const Error = ({ message }: { message: string | undefined }) => {
    if (message) {
