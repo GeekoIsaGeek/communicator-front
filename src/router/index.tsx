@@ -4,14 +4,15 @@ import {
    createRoutesFromElements,
    Route,
 } from 'react-router-dom';
-import Main from '@/pages/Main';
-import { Fragment } from 'react';
+import Login from '@/pages/Login';
+import Registration from '@/pages/Registration';
 
 export const router = createBrowserRouter(
    createRoutesFromElements(
-      <Fragment>
-         <Route path="/" element={<Main />} />
+      <>
+         <Route path="/" element={<Login />} />
+         <Route path="/registration" element={<Registration />} />
          <Route path="*" element={<Navigate to="/" />} />
-      </Fragment>,
+      </>,
    ),
 );
