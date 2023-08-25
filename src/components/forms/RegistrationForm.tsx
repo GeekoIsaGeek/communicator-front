@@ -11,6 +11,7 @@ const RegistrationForm = () => {
       register,
       handleSubmit,
       formState: { errors },
+      watch,
    } = useForm<RegistrationFormFields>();
 
    const submitHandler: SubmitHandler<RegistrationFormFields> = values => {
@@ -54,7 +55,17 @@ const RegistrationForm = () => {
             name="password_confirm"
             placeholder="Confirm Password"
             register={register}
-         />
+            rules={{
+               validate: (confirmation: string) => {
+                  if (watch('password') !== confirmation)
+                     return 'Passwords do not match';
+               },
+            }}
+         >
+            {errors.password_confirm && (
+               <Error message={errors.password_confirm.message} />
+            )}
+         </FormField>
          <div className="flex gap-[2dvw] sm:gap-10 items-center">
             <SubmitButton>Sign up</SubmitButton>
             <Link
