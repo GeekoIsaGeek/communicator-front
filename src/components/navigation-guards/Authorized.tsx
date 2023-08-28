@@ -18,13 +18,13 @@ const Authorized = () => {
       enabled: false,
    });
 
-   useEffect(() => setUser(prev => ({ ...prev, ...data })), [data]);
+   useEffect(() => setUser(prev => ({ ...prev, ...data })), [data, setUser]);
 
    if (isTokenExpired()) {
       return <Navigate to="/login" replace />;
    }
 
-   if (!isTokenExpired() && !user.email) {
+   if (!user.email) {
       refetch();
       return isLoading && <Loading renderOnEmptyPage />;
    }
