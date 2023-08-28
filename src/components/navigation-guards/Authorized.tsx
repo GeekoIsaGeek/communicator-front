@@ -1,14 +1,16 @@
 import { useUserContext } from '@/contexts/userContext';
 import useValidateToken from '@/hooks/useValidateToken';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '@/components/shared/Loading';
 import { fetchUser } from '@/services/fetchData';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const Root = () => {
+const Authorized = () => {
    const { user, setUser } = useUserContext();
    const { isTokenExpired } = useValidateToken();
+   const location = useLocation();
 
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['user'],
@@ -19,7 +21,7 @@ const Root = () => {
    useEffect(() => setUser(prev => ({ ...prev, ...data })), [data]);
 
    if (isTokenExpired()) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/login" replace />;
    }
 
    if (!isTokenExpired() && !user.email) {
@@ -27,7 +29,7 @@ const Root = () => {
       return isLoading && <Loading renderOnEmptyPage />;
    }
 
-   return <Navigate to="/chat" />;
+   return location.pathname === '/' ? <Navigate to="/chat" /> : <Outlet />;
 };
 
-export default Root;
+export default Authorized;
