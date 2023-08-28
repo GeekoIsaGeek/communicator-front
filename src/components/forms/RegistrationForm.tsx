@@ -5,22 +5,36 @@ import SubmitButton from '@/components/UI/SubmitButton';
 import { Link } from 'react-router-dom';
 import ValidationRules from '@/config/validationRules';
 import Error from '@/components/UI/Error';
+import { useState } from 'react';
+import useAuthenticateUser from '@/hooks/useAuthenticateUser';
 
 const RegistrationForm = () => {
-   const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      watch,
-   } = useForm<RegistrationFormFields>();
+   const { register, handleSubmit, formState, watch } =
+      useForm<RegistrationFormFields>();
 
-   const submitHandler: SubmitHandler<RegistrationFormFields> = values => {
-      console.log(values);
+   const [error, setError] = useState<string | null>(null);
+
+   const { sendRequest } = useAuthenticateUser('/register');
+
+   const registerUser: SubmitHandler<RegistrationFormFields> = async values => {
+      setError(null);
+
+      const { error } = await sendRequest({
+         email: values.email,
+         password: values.password,
+         firstname: values.firstname,
+         lastname: values.lastname,
+      });
+
+      if (error) {
+         setError(error);
+         return;
+      }
    };
 
    return (
       <form
-         onSubmit={handleSubmit(submitHandler)}
+         onSubmit={handleSubmit(registerUser)}
          className="flex flex-col gap-3"
       >
          <FormField
@@ -48,7 +62,9 @@ const RegistrationForm = () => {
             register={register}
             rules={ValidationRules.password}
          >
-            {errors.password && <Error message={errors.password.message} />}
+            {formState.errors.password && (
+               <Error message={formState.errors.password.message} />
+            )}
          </FormField>
          <FormField
             type="password"
@@ -62,10 +78,13 @@ const RegistrationForm = () => {
                },
             }}
          >
-            {errors.password_confirm && (
-               <Error message={errors.password_confirm.message} />
+            {formState.errors.password_confirm && (
+               <Error message={formState.errors.password_confirm.message} />
             )}
          </FormField>
+
+         {error && <Error message={error} />}
+
          <div className="flex gap-[2dvw] sm:gap-10 items-center">
             <SubmitButton>Sign up</SubmitButton>
             <Link
