@@ -3,6 +3,7 @@ export interface User {
    firstname: string;
    lastname: string;
    token?: string;
+   isAuthenticated: boolean;
 }
 
 export interface IUserContext {

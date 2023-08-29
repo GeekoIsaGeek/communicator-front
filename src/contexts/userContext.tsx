@@ -6,6 +6,7 @@ const initialState: IUserContext = {
       firstname: '',
       lastname: '',
       email: '',
+      isAuthenticated: false,
       token: '',
    },
    setUser: () => {},

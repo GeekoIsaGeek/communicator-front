@@ -1,10 +1,10 @@
-import useValidateToken from '@/hooks/useValidateToken';
+import { useUserContext } from '@/contexts/userContext';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Unauthorized = () => {
-   const { isTokenExpired } = useValidateToken();
+   const { user } = useUserContext();
 
-   if (isTokenExpired()) {
+   if (!user.isAuthenticated) {
       return <Outlet />;
    }
    return <Navigate to="/chat" />;

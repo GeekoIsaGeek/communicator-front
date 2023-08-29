@@ -7,7 +7,6 @@ import Error from '@/components/UI/Error';
 import ValidationRules from '@/config/validationRules';
 import { useState } from 'react';
 import useAuthenticateUser from '@/hooks/useAuthenticateUser';
-import { useUserContext } from '@/contexts/userContext';
 
 const LoginForm = () => {
    const { register, handleSubmit, formState } = useForm<LoginFormFields>();
@@ -15,12 +14,11 @@ const LoginForm = () => {
    const [error, setError] = useState<string | null>(null);
 
    const { sendRequest } = useAuthenticateUser('/login');
-   const { setUser } = useUserContext();
 
    const loginUser: SubmitHandler<LoginFormFields> = async values => {
       setError(null);
 
-      const { error, userData } = await sendRequest({
+      const { error } = await sendRequest({
          email: values.email,
          password: values.password,
       });
@@ -29,7 +27,6 @@ const LoginForm = () => {
          setError(error);
          return;
       }
-      setUser(userData);
    };
 
    return (

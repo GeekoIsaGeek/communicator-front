@@ -2,20 +2,23 @@ import request from '@/config/axiosInstance';
 import axios from 'axios';
 import { LoginFormFields, RegistrationFormFields } from '@/types/FormTypes';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '@/contexts/userContext';
 
 type Endpoint = '/login' | '/register';
 type Credentials = RegistrationFormFields | LoginFormFields;
 
 const useAuthenticateUser = (endpoint: Endpoint) => {
    const navigate = useNavigate();
+   const { setUser } = useUserContext();
 
    const sendRequest = async (credentials: Credentials) => {
-      let error, userData;
+      let error;
 
       try {
          const { data } = await request.post(endpoint, credentials);
-         userData = data;
+
          localStorage.setItem('token', JSON.stringify(data.token));
+         setUser(prev => ({ ...prev, ...data, isAuthenticated: true }));
          navigate('/chat');
       } catch (err) {
          if (axios.isAxiosError(err)) {
@@ -25,7 +28,7 @@ const useAuthenticateUser = (endpoint: Endpoint) => {
          }
       }
 
-      return { error, userData };
+      return { error };
    };
    return { sendRequest };
 };
