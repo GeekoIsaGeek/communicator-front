@@ -1,4 +1,4 @@
-import { ThreeDots } from 'react-loader-spinner';
+import { ColorRing } from 'react-loader-spinner';
 
 const Loading = ({ renderOnEmptyPage }: { renderOnEmptyPage: boolean }) => {
    return (
@@ -7,7 +7,18 @@ const Loading = ({ renderOnEmptyPage }: { renderOnEmptyPage: boolean }) => {
             renderOnEmptyPage && 'h-screen'
          }`}
       >
-         <ThreeDots width="60" height="60" color="#ff789e" />
+         <ColorRing
+            visible
+            height="60"
+            width="60"
+            colors={[
+               'pink',
+               '#fcbacb',
+               'lightpink',
+               '#e39ff6',
+               'rgb(231, 183, 255)',
+            ]}
+         />
       </div>
    );
 };

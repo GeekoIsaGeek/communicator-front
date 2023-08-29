@@ -10,11 +10,16 @@ const useValidateToken = () => {
       if (!localStorage.getItem('token')) {
          return true;
       }
-      const token = localStorage.getItem('token') as string;
 
+      const token = localStorage.getItem('token') as string;
       const currentTime = Date.now() / 1000;
       const decodedToken = jwtDecode<JwtToken>(token);
-      return decodedToken.exp < currentTime;
+      const isExpired = decodedToken.exp < currentTime;
+
+      if (isExpired) {
+         localStorage.removeItem('token');
+      }
+      return isExpired;
    };
 
    return { isTokenExpired };

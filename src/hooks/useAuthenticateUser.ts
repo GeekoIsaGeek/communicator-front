@@ -1,6 +1,6 @@
 import request from '@/config/axiosInstance';
 import axios from 'axios';
-import { LoginFormFields, RegistrationFormFields } from '@/types/FormTypes';
+import { LoginFormFields, RegistrationFormFields } from '@/types/formTypes';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '@/contexts/userContext';
 

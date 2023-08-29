@@ -25,7 +25,7 @@ const App = () => {
 
    if (!user.isAuthenticated && !isTokenExpired()) {
       refetch();
-      return isLoading && <Loading renderOnEmptyPage />;
+      if (isLoading) return <Loading renderOnEmptyPage />;
    }
    return <RouterProvider router={router} />;
 };

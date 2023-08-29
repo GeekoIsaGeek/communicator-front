@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { RegistrationFormFields } from '@/types/FormTypes';
+import { RegistrationFormFields } from '@/types/formTypes';
 import FormField from '@/components/UI/FormField';
 import SubmitButton from '@/components/UI/SubmitButton';
 import { Link } from 'react-router-dom';

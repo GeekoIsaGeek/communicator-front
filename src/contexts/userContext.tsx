@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { User, IUserContext } from '@/types/UserContextTypes';
+import { User, IUserContext } from '@/types/userContextTypes';
 
 const initialState: IUserContext = {
    user: {
