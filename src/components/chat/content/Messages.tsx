@@ -22,7 +22,7 @@ const Messages = () => {
       >
          {messages.map((message, i) => (
             <div
-               className={`flex w-[90%] md:max-w-[40%] xl:max-w-[30%] gap-2 ${
+               className={`flex w-[90%] md:max-w-[45%] xl:max-w-[30%] gap-2 ${
                   message.receiver === user.id
                      ? 'self-end flex-row-reverse'
                      : 'self-start '

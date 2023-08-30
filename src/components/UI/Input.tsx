@@ -7,7 +7,7 @@ interface InputProps {
 
 const Input = (props: InputProps) => {
    return (
-      <div className="w-full flex items-center py-2 px-3 bg-[#f3f3f3] rounded-full">
+      <div className="w-full flex items-center py-2 px-3 bg-[#f5f5f5] rounded-full shadow-input">
          {props.children}
          <input
             type="text"
