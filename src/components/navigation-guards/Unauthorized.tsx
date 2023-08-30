@@ -1,8 +1,8 @@
-import { useUserContext } from '@/contexts/userContext';
+import { useUserStore } from '@/stores/userStore';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Unauthorized = () => {
-   const { user } = useUserContext();
+   const { user } = useUserStore();
 
    if (!user.isAuthenticated) {
       return <Outlet />;

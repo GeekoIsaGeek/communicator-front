@@ -1,9 +1,9 @@
-import { useUserContext } from '@/contexts/userContext';
+import { useUserStore } from '@/stores/userStore';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const Authorized = () => {
-   const { user } = useUserContext();
+   const { user } = useUserStore();
    const location = useLocation();
 
    if (!user.isAuthenticated) {

@@ -1,10 +1,10 @@
-import { useUserContext } from '@/contexts/userContext';
 import LogoutIcon from '@/assets/logout.png';
 import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '@/stores/userStore';
 
 const LogoutButton = () => {
-   const { clearUserState } = useUserContext();
+   const { clearUserState } = useUserStore();
    const navigate = useNavigate();
 
    const logoutUser = (event: FormEvent<HTMLFormElement>) => {

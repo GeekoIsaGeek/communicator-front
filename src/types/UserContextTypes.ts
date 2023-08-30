@@ -8,6 +8,6 @@ export interface User {
 
 export interface IUserContext {
    user: User;
-   setUser: React.Dispatch<React.SetStateAction<User>>;
+   setUser: (user: Omit<User, 'isAuthenticated'>) => void;
    clearUserState: () => void;
 }
