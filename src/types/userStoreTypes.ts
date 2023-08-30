@@ -6,7 +6,7 @@ export interface User {
    isAuthenticated: boolean;
 }
 
-export interface IUserContext {
+export interface UserState {
    user: User;
    setUser: (user: Omit<User, 'isAuthenticated'>) => void;
    clearUserState: () => void;

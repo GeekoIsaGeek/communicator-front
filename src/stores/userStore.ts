@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { IUserContext } from '@/types/userContextTypes';
+import { UserState } from '@/types/userStoreTypes';
 
-const initialState: IUserContext = {
+const initialState: UserState = {
    user: {
       firstname: '',
       lastname: '',
@@ -13,7 +13,7 @@ const initialState: IUserContext = {
    clearUserState: () => {},
 };
 
-export const useUserStore = create<IUserContext>(set => ({
+export const useUserStore = create<UserState>(set => ({
    user: initialState.user,
    setUser: userData =>
       set(state => ({
