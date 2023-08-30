@@ -5,7 +5,7 @@ import { fetchUser } from '@/services/fetchData';
 import { useEffect } from 'react';
 import Loading from '@/components/shared/Loading';
 import useValidateToken from '@/hooks/useValidateToken';
-import { useUserStore } from './stores/userStore';
+import { useUserStore } from '@/stores/userStore';
 
 const App = () => {
    const { isTokenExpired } = useValidateToken();

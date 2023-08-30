@@ -3,6 +3,7 @@ import { UserState } from '@/types/userStoreTypes';
 
 const initialState: UserState = {
    user: {
+      id: '',
       firstname: '',
       lastname: '',
       email: '',

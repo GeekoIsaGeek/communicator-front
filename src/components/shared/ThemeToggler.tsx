@@ -1,31 +1,27 @@
 import NightIcon from '@/assets/night-icon.png';
 import DaytimeIcon from '@/assets/daytime-icon.png';
-import { useState } from 'react';
+import { useThemeStore } from '@/stores/themeStore';
 
 const ThemeToggler = () => {
-   const selectedTheme = JSON.parse(localStorage.getItem('theme') as string);
+   const { isNightModeSelected, setIsNightModeSelected } = useThemeStore();
 
-   const [isDayThemeSelected, setIsDayThemeSelected] =
-      useState<boolean>(selectedTheme);
-
-   const toggleTheme = (isDayTheme: boolean) => {
-      console.log(isDayTheme, isDayThemeSelected, selectedTheme);
-      localStorage.setItem('theme', JSON.stringify(isDayTheme));
-      setIsDayThemeSelected(prevTheme => !prevTheme);
+   const toggleTheme = (isNightMode: boolean) => {
+      localStorage.setItem('theme', JSON.stringify(isNightMode));
+      setIsNightModeSelected(isNightMode);
    };
 
    return (
       <div
          className={`flex items-center gap-4 px-[6px] py-[2px] bg-extraDarkGray rounded-full overflow-hidden transform transition cursor-pointer w-[60px] border border-gray-300 shadow ${
-            isDayThemeSelected ? 'toggler-day-bg ' : 'toggler-night-bg '
+            isNightModeSelected ? 'toggler-night-bg ' : 'toggler-day-bg '
          }`}
-         onClick={() => toggleTheme(!isDayThemeSelected)}
+         onClick={() => toggleTheme(!isNightModeSelected)}
       >
          <img
-            src={isDayThemeSelected ? DaytimeIcon : NightIcon}
+            src={isNightModeSelected ? NightIcon : DaytimeIcon}
             width={20}
             className={`transition-all duration-300 ease-out ${
-               isDayThemeSelected ? ' translate-x-0' : ' translate-x-[140%]'
+               isNightModeSelected ? ' translate-x-[140%]' : ' translate-x-0'
             }`}
             alt="theme icon"
          />

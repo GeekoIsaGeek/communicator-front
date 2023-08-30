@@ -3,7 +3,7 @@ import sendIcon from '@/assets/sendIcon.svg';
 
 const WriteMessage = () => {
    return (
-      <div className="mb-3 px-6 w-full">
+      <div className="mb-3 mt-2 px-6 w-full">
          <form className="flex gap-4">
             <Input placeholder="Message" />
             <button type="submit">
