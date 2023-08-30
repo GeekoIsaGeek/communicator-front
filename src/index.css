@@ -17,6 +17,12 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
    }
+   .toggler-night-bg {
+      background-color: rgb(26, 26, 26);
+   }
+   .toggler-day-bg {
+      background-color: white;
+   }
 }
 
 body {
