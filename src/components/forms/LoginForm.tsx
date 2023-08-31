@@ -51,11 +51,11 @@ const LoginForm = () => {
 
          {error && <Error message={error} />}
 
-         <div className="flex gap-[4dvw] xs:gap-10 items-center mt-2">
+         <div className="flex justify-between items-center mt-2">
             <SubmitButton>Log in</SubmitButton>
             <Link
                to="/registration"
-               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out dark:text-white"
+               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out dark:text-textDark dark:hover:text-purple-300"
             >
                Create new account
             </Link>
