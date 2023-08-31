@@ -13,7 +13,7 @@ const LoginForm = () => {
 
    const [error, setError] = useState<string | null>(null);
 
-   const { sendRequest } = useAuthenticateUser('/login');
+   const { sendRequest } = useAuthenticateUser();
 
    const loginUser: SubmitHandler<LoginFormFields> = async values => {
       setError(null);
@@ -51,11 +51,11 @@ const LoginForm = () => {
 
          {error && <Error message={error} />}
 
-         <div className="flex gap-[4dvw] xs:gap-10 items-center">
+         <div className="flex gap-[4dvw] xs:gap-10 items-center mt-2">
             <SubmitButton>Log in</SubmitButton>
             <Link
                to="/registration"
-               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out"
+               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out dark:text-white"
             >
                Create new account
             </Link>

@@ -1,6 +1,6 @@
 import { useUserStore } from '@/stores/userStore';
 import { useEffect, useRef } from 'react';
-import avatar from '@/assets/avatar.jpg';
+import avatarPlaceholder from '@/assets/avatar.jpg';
 
 const messages = [
    {
@@ -12,7 +12,7 @@ const messages = [
    },
    {
       id: 2,
-      receiver: '64eb5bb7fee0e16ede2e6dc4',
+      receiver: '64f0dac13957175c5334503d',
       sender: '543jhjhgjhsdad8hgfdasd',
       content:
          'esse nisi minima dolorem. Ullam iste libero fuga autem. Nesciunt?',
@@ -46,12 +46,16 @@ const Messages = () => {
                }`}
             >
                <img
-                  src={avatar}
+                  src={
+                     message.receiver === user.id
+                        ? `${import.meta.env.VITE_API_URL}${user.avatar}`
+                        : avatarPlaceholder
+                  }
                   alt="avatar"
                   className="w-8 self-end rounded-full"
                />
                <p
-                  className={`px-4 py-2 text-justify text-white rounded-2xl ${
+                  className={`px-4 py-2 text-justify text-white dark:text-black rounded-2xl ${
                      message.receiver === user.id
                         ? ' bg-usersChatColor'
                         : 'bg-[#8ba2ee]'

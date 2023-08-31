@@ -10,8 +10,8 @@ interface MainProps {
 
 const Main = ({ setShowSidebar }: MainProps) => {
    return (
-      <main className="w-full flex flex-col max-h-screen justify-between">
-         <div className="px-2 shadow flex justify-between items-center">
+      <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
+         <div className="px-2 shadow dark:shadow-chatHeaderDark flex justify-between items-center dark:bg-sidebarDark">
             <User avatar={avatar} name="John Doe" isChatHeader />
             <img
                src={navIcon}

@@ -6,10 +6,13 @@ import { useEffect } from 'react';
 import Loading from '@/components/shared/Loading';
 import useValidateToken from '@/hooks/useValidateToken';
 import { useUserStore } from '@/stores/userStore';
+import useInitializeTheme from './hooks/useInitializeTheme';
 
 const App = () => {
    const { isTokenExpired } = useValidateToken();
    const { user, setUser } = useUserStore();
+
+   useInitializeTheme();
 
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['user'],

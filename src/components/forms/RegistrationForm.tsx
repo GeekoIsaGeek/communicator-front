@@ -92,11 +92,11 @@ const RegistrationForm = () => {
 
          {error && <Error message={error} />}
 
-         <div className="flex gap-[2dvw] sm:gap-10 items-center">
+         <div className="flex gap-[2dvw] sm:gap-10 items-center mt-2">
             <SubmitButton>Sign up</SubmitButton>
             <Link
                to="/login"
-               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out"
+               className="text-gray-600 hover:text-purple-400 font-bolder transition-colors ease-out dark:text-textDark dark:hover:text-purple-300"
             >
                Already have an account?
             </Link>
