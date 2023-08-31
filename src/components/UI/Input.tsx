@@ -12,7 +12,7 @@ const Input = (props: InputProps) => {
          <input
             type="text"
             placeholder={props.placeholder}
-            className="w-full px-2 outline-none bg-inherit placeholder-[#6b6b6b]"
+            className="w-full px-2 outline-none bg-inherit placeholder-[#6b6b6b] text-gray-700"
          />
       </div>
    );

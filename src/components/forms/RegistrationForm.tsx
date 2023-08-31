@@ -6,25 +6,31 @@ import { Link } from 'react-router-dom';
 import ValidationRules from '@/config/validationRules';
 import Error from '@/components/UI/Error';
 import { useState } from 'react';
-import useAuthenticateUser from '@/hooks/useAuthenticateUser';
+import ImageSelector from '@/components/UI/ImageSelector';
+import useRegisterUser from '@/hooks/useRegisterUser';
 
 const RegistrationForm = () => {
    const { register, handleSubmit, formState, watch } =
       useForm<RegistrationFormFields>();
 
+   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
    const [error, setError] = useState<string | null>(null);
-
-   const { sendRequest } = useAuthenticateUser('/register');
+   const { sendRequest } = useRegisterUser();
 
    const registerUser: SubmitHandler<RegistrationFormFields> = async values => {
       setError(null);
 
-      const { error } = await sendRequest({
-         email: values.email,
-         password: values.password,
-         firstname: values.firstname,
-         lastname: values.lastname,
+      const formData = new FormData();
+      Object.entries(values).forEach(field => {
+         if (field[0] !== 'password_confirm') {
+            formData.append(field[0], field[1]);
+         }
       });
+      if (imageBlob) {
+         formData.append('avatar', imageBlob);
+      }
+
+      const { error } = await sendRequest(formData);
 
       if (error) {
          setError(error);
@@ -37,6 +43,7 @@ const RegistrationForm = () => {
          onSubmit={handleSubmit(registerUser)}
          className="flex flex-col gap-3"
       >
+         <ImageSelector setImageBlob={setImageBlob} />
          <FormField
             type="email"
             name="email"

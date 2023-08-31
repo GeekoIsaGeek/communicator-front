@@ -9,7 +9,7 @@ const User = ({ avatar, name, isChatHeader }: UserProps) => {
       <div
          className={`py-2 px-2 gap-5 flex items-center ${
             !isChatHeader &&
-            'hover:bg-[#ffffff88] cursor-pointer rounded-lg border border-transparent hover:border-gray-300 transition-all duration-200 linear'
+            'hover:bg-[#f3f3f388] cursor-pointer rounded-lg transition-colors duration-300 ease-out'
          }`}
       >
          <img
@@ -17,7 +17,7 @@ const User = ({ avatar, name, isChatHeader }: UserProps) => {
             alt="avatar"
             className={`${
                isChatHeader ? 'h-[40px] w-[40px]' : 'h-[50px] w-[50px] '
-            } rounded-full object-cover"`}
+            } rounded-full object-cover shadow-avatar"`}
          />
          <p className="text-md font-bolder text-gray-600">{name}</p>
       </div>

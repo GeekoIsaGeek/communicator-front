@@ -4,6 +4,7 @@ export interface User {
    firstname: string;
    lastname: string;
    token?: string;
+   avatar?: string;
    isAuthenticated: boolean;
 }
 
