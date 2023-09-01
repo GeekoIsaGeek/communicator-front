@@ -15,7 +15,7 @@ const FormField = <T extends FieldValues>(props: FieldProps<T>) => {
       <div>
          <input
             type={props.type}
-            className="bg-offWhite dark:bg-[#0e0e0e] text-gray-100 show-[black] rounded-md px-2 py-1 shadow-input outline-gray-400 w-full "
+            className="bg-offWhite dark:bg-[#0e0e0e] dark:text-gray-100 show-[black] rounded-md px-2 py-1 shadow-input outline-gray-400 w-full "
             placeholder={props.placeholder}
             {...props.register(props.name as Path<T>, { ...props.rules })}
             required

@@ -1,8 +1,8 @@
 import User from '@/components/chat/sidebar/User';
 import avatar from '@/assets/avatar.jpg';
-import WriteMessage from '@/components/chat/content/WriteMessage';
 import Messages from '@/components/chat/content/Messages';
 import navIcon from '@/assets/nav.png';
+import MessageBar from '@/components/chat/content/MessageBar';
 
 interface MainProps {
    setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,7 +21,7 @@ const Main = ({ setShowSidebar }: MainProps) => {
             />
          </div>
          <Messages />
-         <WriteMessage />
+         <MessageBar />
       </main>
    );
 };
