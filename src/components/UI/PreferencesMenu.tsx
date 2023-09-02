@@ -9,7 +9,7 @@ const PreferencesMenu = () => {
 
    return (
       <div
-         className="flex flex-col gap-4 absolute right-0 top-10 bg-[#ffffffde] backdrop-blur-[30px] shadow-sidebar px-6 py-3 rounded-md w-max select-none"
+         className="flex flex-col gap-4 absolute right-0 top-10 bg-[#ffffffde] backdrop-blur-[30px] shadow-sidebar px-6 py-3 rounded-md w-max select-none z-2"
          onMouseLeave={() => setDisplayPreferences(false)}
       >
          <div className="flex items-center gap-2">

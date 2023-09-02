@@ -1,10 +1,13 @@
 import { ReactNode } from 'react';
+import { UserState } from '@/types/userStoreTypes';
 
 interface InputProps {
    children?: ReactNode;
    placeholder: string;
    value: string;
-   setter: React.Dispatch<React.SetStateAction<string>>;
+   setter:
+      | React.Dispatch<React.SetStateAction<string>>
+      | UserState['setSearchString'];
 }
 
 const Input = (props: InputProps) => {

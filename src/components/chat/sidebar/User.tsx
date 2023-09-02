@@ -4,15 +4,17 @@ interface UserProps {
    avatar: string;
    name: string;
    isChatHeader?: boolean;
+   clickHandler?: () => void;
 }
 
-const User = ({ avatar, name, isChatHeader }: UserProps) => {
+const User = ({ avatar, name, isChatHeader, clickHandler }: UserProps) => {
    return (
       <div
          className={`py-2 px-2 gap-5 flex items-center ${
             !isChatHeader &&
             'hover:bg-[#f3f3f388] cursor-pointer rounded-lg transition-colors duration-200 ease-in-out dark:hover:bg-gray-700'
          }`}
+         onClick={clickHandler}
       >
          <img
             src={avatar || avatarPlaceholder}

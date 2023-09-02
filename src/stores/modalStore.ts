@@ -3,8 +3,11 @@ import { create } from 'zustand';
 interface ModalStore {
    displayPreferences: boolean;
    displayEmojis: boolean;
-   setDisplayEmojis: (show: boolean) => void;
+   displaySidebar: boolean;
+
    setDisplayPreferences: (show: boolean) => void;
+   setDisplayEmojis: (show: boolean) => void;
+   setDisplaySidebar: (show: boolean) => void;
 }
 
 export const useModalStore = create<ModalStore>(set => ({
@@ -14,4 +17,7 @@ export const useModalStore = create<ModalStore>(set => ({
 
    displayEmojis: false,
    setDisplayEmojis: (show: boolean) => set(() => ({ displayEmojis: show })),
+
+   displaySidebar: false,
+   setDisplaySidebar: (show: boolean) => set(() => ({ displaySidebar: show })),
 }));
