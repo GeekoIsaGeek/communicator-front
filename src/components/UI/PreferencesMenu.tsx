@@ -1,6 +1,6 @@
 import LogoutButton from '@/components/UI/LogoutButton';
 import ThemeToggler from '@/components/shared/ThemeToggler';
-import { useModalStore } from '@/stores/modalStore';
+import { useModalStore } from '@/stores/togglerStore';
 import { useLocation } from 'react-router-dom';
 
 const PreferencesMenu = () => {

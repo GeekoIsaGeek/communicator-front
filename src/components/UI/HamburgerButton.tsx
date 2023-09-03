@@ -1,5 +1,5 @@
 import navIcon from '@/assets/nav.png';
-import { useModalStore } from '@/stores/modalStore';
+import { useModalStore } from '@/stores/togglerStore';
 
 const HamburgerButton = () => {
    const { setDisplaySidebar, displaySidebar } = useModalStore();

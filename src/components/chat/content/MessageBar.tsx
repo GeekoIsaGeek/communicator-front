@@ -3,7 +3,7 @@ import sendIcon from '@/assets/sendIcon.svg';
 import EmojiPicker from 'emoji-picker-react';
 import { FormEvent, useState } from 'react';
 import emoji from '@/assets/emoji.png';
-import { useModalStore } from '@/stores/modalStore';
+import { useModalStore } from '@/stores/togglerStore';
 import { useMessageStore } from '@/stores/messageStore';
 import { useUserStore } from '@/stores/userStore';
 

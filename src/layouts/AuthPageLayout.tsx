@@ -3,7 +3,7 @@ import Copyright from '@/components/shared/Copyright';
 import { ReactNode } from 'react';
 import PreferencesButton from '@/components/UI/PreferencesButton';
 import PreferencesMenu from '@/components/UI/PreferencesMenu';
-import { useModalStore } from '@/stores/modalStore';
+import { useModalStore } from '@/stores/togglerStore';
 
 const AuthPageLayout = ({ children }: { children: ReactNode }) => {
    const { displayPreferences } = useModalStore();
