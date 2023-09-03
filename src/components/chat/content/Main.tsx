@@ -16,11 +16,11 @@ const Main = () => {
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
          {!selectedUser.id ? (
             <div className="flex items-center flex-col h-full">
-               <h1 className="text-center text-4xl md:text-5xl dark:text-white text-gray-600 max-w-[400px] lg:max-w-none mt-[400px] ">
-                  Select or find a person to start chatting
+               <h1 className="text-center text-4xl md:text-[60px] md:leading-[60px] logo-gradient py-2 font-bold font-lobster max-w-[350px] lg:max-w-[550px] mt-[40dvh]">
+                  Select or find a person to start chatting!
                </h1>
                <div className="flex flex-col items-center self-end w-full h-full justify-end">
-                  <Logo />
+                  <Logo onChat={true} />
                   <Copyright />
                </div>
                <div className="absolute top-4 right-4">

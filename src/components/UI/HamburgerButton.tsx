@@ -5,12 +5,14 @@ const HamburgerButton = () => {
    const { setDisplaySidebar, displaySidebar } = useModalStore();
 
    return (
-      <img
-         src={navIcon}
-         alt="navigation icon"
-         className="cursor-pointer w-8 md:hidden"
-         onClick={() => setDisplaySidebar(!displaySidebar)}
-      />
+      <button className="cursor-pointer md:hidden">
+         <img
+            src={navIcon}
+            alt="navigation icon"
+            className="w-8 "
+            onClick={() => setDisplaySidebar(!displaySidebar)}
+         />
+      </button>
    );
 };
 
