@@ -5,11 +5,11 @@ import request from '@/config/axiosInstance';
 const initialState: UserState = {
    user: {
       id: '',
-      firstname: '',
-      lastname: '',
+      name: '',
       email: '',
       isAuthenticated: false,
       token: '',
+      connections: [],
    },
    setUser: () => {},
    clearUserState: () => {},
@@ -21,8 +21,7 @@ const initialState: UserState = {
    filterUsers: () => {},
    selectedUser: {
       id: '',
-      firstname: '',
-      lastname: '',
+      name: '',
       avatar: '',
    },
    setSelectedUser: () => {},
@@ -47,21 +46,27 @@ export const useUserStore = create<UserState>(set => ({
                'Bearer ' + JSON.parse(localStorage.getItem('token') as string),
          },
       });
-      set({ users: users.data, filteredUsers: users.data });
+      set({ users: users.data });
    },
 
    searchString: initialState.searchString,
    setSearchString: searchString => set({ searchString }),
 
-   filteredUsers: initialState.filteredUsers,
+   filteredUsers: initialState.user.connections,
    filterUsers: () => {
-      set(state => ({
-         filteredUsers: state.users.filter(user =>
-            user.firstname
-               .toLowerCase()
-               .includes(state.searchString.toLowerCase()),
-         ),
-      }));
+      set(state => {
+         if (state.searchString) {
+            console.log('yay');
+            return {
+               filteredUsers: state.users.filter(user =>
+                  user.name
+                     .toLowerCase()
+                     .includes(state.searchString.toLowerCase()),
+               ),
+            };
+         }
+         return { filteredUsers: state.user.connections };
+      });
    },
 
    selectedUser: initialState.selectedUser,

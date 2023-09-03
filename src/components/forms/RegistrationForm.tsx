@@ -8,6 +8,7 @@ import Error from '@/components/UI/Error';
 import { useState } from 'react';
 import ImageSelector from '@/components/UI/ImageSelector';
 import useRegisterUser from '@/hooks/useRegisterUser';
+import { capitalize } from '@/utils/stringUtils';
 
 const RegistrationForm = () => {
    const { register, handleSubmit, formState, watch } =
@@ -19,13 +20,22 @@ const RegistrationForm = () => {
 
    const registerUser: SubmitHandler<RegistrationFormFields> = async values => {
       setError(null);
+      const name = `
+      ${capitalize(values.firstname)} ${capitalize(values.lastname)}`;
 
       const formData = new FormData();
+      formData.append('name', name);
+
       Object.entries(values).forEach(field => {
-         if (field[0] !== 'password_confirm') {
+         if (
+            field[0] !== 'password_confirm' &&
+            field[0] !== 'firstname' &&
+            field[0] !== 'lastname'
+         ) {
             formData.append(field[0], field[1]);
          }
       });
+
       if (imageBlob) {
          formData.append('avatar', imageBlob);
       }

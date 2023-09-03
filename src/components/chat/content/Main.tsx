@@ -5,12 +5,12 @@ import { useUserStore } from '@/stores/userStore';
 import Copyright from '@/components/shared/Copyright';
 import Logo from '@/components/shared/Logo';
 import HamburgerButton from '@/components/UI/HamburgerButton';
+import { getAvatarLink } from '@/utils/stringUtils';
 
 const Main = () => {
    const { selectedUser } = useUserStore();
 
-   const name = `${selectedUser.firstname} ${selectedUser.lastname}`;
-   const avatar = `${import.meta.env.VITE_API_URL}${selectedUser.avatar}`;
+   const avatar = getAvatarLink(selectedUser.avatar as string);
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
@@ -30,7 +30,7 @@ const Main = () => {
          ) : (
             <>
                <div className="px-2 shadow dark:shadow-chatHeaderDark flex justify-between items-center dark:bg-sidebarDark">
-                  <User avatar={avatar} name={name} isChatHeader />
+                  <User avatar={avatar} name={selectedUser.name} isChatHeader />
                   <HamburgerButton />
                </div>
                <Messages />

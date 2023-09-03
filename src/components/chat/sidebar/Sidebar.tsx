@@ -6,6 +6,7 @@ import { useModalStore } from '@/stores/modalStore';
 import PreferencesButton from '@/components/UI/PreferencesButton';
 import { useUserStore } from '@/stores/userStore';
 import { useEffect } from 'react';
+import { getAvatarLink } from '@/utils/stringUtils';
 
 const Sidebar = () => {
    const { displayPreferences } = useModalStore();
@@ -17,11 +18,16 @@ const Sidebar = () => {
       fetchUsers,
       filteredUsers,
       setSelectedUser,
+      filterUsers,
    } = useUserStore();
 
    useEffect(() => {
       fetchUsers();
    }, [fetchUsers]);
+
+   useEffect(() => {
+      filterUsers();
+   }, [searchString, filterUsers]);
 
    const mobileStyles = `
       flex absolute left-0 top-0 h-full bg-[rgba(255,255,255,0.9)] backdrop-blur-[20px] transition-transform ease-in-out duration-300 dark:bg-[#0c0c0ce0]
@@ -52,8 +58,8 @@ const Sidebar = () => {
             {filteredUsers.map(user => (
                <User
                   key={user.id}
-                  name={user.firstname + ' ' + user.lastname}
-                  avatar={import.meta.env.VITE_API_URL + user.avatar}
+                  name={user.name}
+                  avatar={getAvatarLink(user.avatar as string)}
                   clickHandler={() => {
                      setSelectedUser(user);
                      setDisplaySidebar(false);

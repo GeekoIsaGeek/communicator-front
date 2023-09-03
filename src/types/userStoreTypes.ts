@@ -1,17 +1,16 @@
 export interface User {
    id: string;
    email: string;
-   firstname: string;
-   lastname: string;
+   name: string;
    token?: string;
    avatar?: string;
    isAuthenticated: boolean;
+   connections: [];
 }
 
 export interface Friend {
    id: string;
-   firstname: string;
-   lastname: string;
+   name: string;
    avatar?: string;
 }
 

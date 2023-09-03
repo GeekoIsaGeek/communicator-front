@@ -29,7 +29,7 @@ const ImageSelector = ({ setImageBlob }: ImageSelectorProps) => {
             <img
                src={image || avatarPlaceholder}
                alt="avatar placeholder"
-               className="rounded-full  w-full h-full"
+               className="rounded-full w-full h-full object-cover"
             />
             <input
                type="file"
