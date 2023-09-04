@@ -56,7 +56,6 @@ export const useUserStore = create<UserState>(set => ({
    filterUsers: () => {
       set(state => {
          if (state.searchString) {
-            console.log('yay');
             return {
                filteredUsers: state.users.filter(user =>
                   user.name

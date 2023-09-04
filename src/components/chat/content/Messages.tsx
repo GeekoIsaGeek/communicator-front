@@ -1,10 +1,8 @@
-import { useUserStore } from '@/stores/userStore';
 import { useEffect, useRef } from 'react';
-import avatarPlaceholder from '@/assets/avatar.jpg';
 import { useMessageStore } from '@/stores/messageStore';
+import Message from '@/components/chat/content/Message';
 
 const Messages = () => {
-   const { user } = useUserStore();
    const chatWrapperRef = useRef<null | HTMLDivElement>(null);
    const { messages } = useMessageStore();
 
@@ -22,33 +20,7 @@ const Messages = () => {
          ref={chatWrapperRef}
       >
          {messages.map(message => (
-            <div
-               key={message.id}
-               className={`flex w-[90%] md:max-w-[45%] xl:max-w-[30%] gap-2 ${
-                  message.sender === user.id
-                     ? 'self-end flex-row-reverse'
-                     : 'self-start '
-               }`}
-            >
-               <img
-                  src={
-                     message.sender === user.id
-                        ? `${import.meta.env.VITE_API_URL}${user.avatar}`
-                        : avatarPlaceholder
-                  }
-                  alt="avatar"
-                  className="w-8 self-end rounded-full"
-               />
-               <p
-                  className={`px-4 py-2 text-justify text-white dark:text-black rounded-2xl ${
-                     message.sender === user.id
-                        ? ' bg-usersChatColor'
-                        : 'bg-[#8ba2ee]'
-                  }`}
-               >
-                  {message.content}
-               </p>
-            </div>
+            <Message key={message.id} message={message} />
          ))}
       </div>
    );
