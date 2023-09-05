@@ -57,7 +57,7 @@ const Sidebar = () => {
          <ul className="overflow-y-auto h-full ">
             {filteredUsers.map(user => (
                <User
-                  key={user.id}
+                  key={user._id}
                   name={user.name}
                   avatar={getAvatarLink(user.avatar as string)}
                   clickHandler={() => {

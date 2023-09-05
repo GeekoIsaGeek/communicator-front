@@ -29,7 +29,7 @@ const Main = () => {
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
-         {!selectedUser.id ? (
+         {!selectedUser._id ? (
             <div className="flex items-center flex-col h-full">
                <h1 className="text-center text-4xl md:text-[60px] md:leading-[60px] logo-gradient py-2 font-bold font-lobster max-w-[350px] lg:max-w-[550px] mt-[40dvh]">
                   Select or find a person to start chatting!

@@ -21,12 +21,12 @@ const MessageBar = () => {
    const sendMessage = (event: FormEvent) => {
       event.preventDefault();
       if (messageText) {
-         const room = getPrivateRoomName(user.id, selectedUser.id);
+         const room = getPrivateRoomName(user._id, selectedUser._id);
 
          socket.emit('message', {
             room,
-            sender: user.id,
-            receiver: selectedUser.id,
+            sender: user._id,
+            receiver: selectedUser._id,
             content: messageText,
          });
          setMessageText('');

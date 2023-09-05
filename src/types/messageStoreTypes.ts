@@ -1,5 +1,5 @@
 export interface Message {
-   id: string;
+   _id: string;
    receiver: string;
    sender: string;
    content: string;
@@ -10,4 +10,6 @@ export interface MessageStore {
    messages: Message[];
    addMessage: (message: Message) => void;
    setMessages: (messages: Message[]) => void;
+   isLoading: boolean;
+   fetchMessages: (receiver: string, sender: string) => void;
 }

@@ -1,5 +1,5 @@
 export interface User {
-   id: string;
+   _id: string;
    email: string;
    name: string;
    token?: string;
@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface Friend {
-   id: string;
+   _id: string;
    name: string;
    avatar?: string;
 }

@@ -4,7 +4,7 @@ import request from '@/config/axiosInstance';
 
 const initialState: UserState = {
    user: {
-      id: '',
+      _id: '',
       name: '',
       email: '',
       isAuthenticated: false,
@@ -20,7 +20,7 @@ const initialState: UserState = {
    filteredUsers: [],
    filterUsers: () => {},
    selectedUser: {
-      id: '',
+      _id: '',
       name: '',
       avatar: '',
    },
