@@ -3,7 +3,7 @@ import { LoginFormFields } from '@/types/formTypes';
 import FormField from '@/components/UI/FormField';
 import SubmitButton from '@/components/UI/SubmitButton';
 import { Link } from 'react-router-dom';
-import Error from '@/components/UI/Error';
+import Error from '@/components/shared/Error';
 import ValidationRules from '@/config/validationRules';
 import { useState } from 'react';
 import useAuthenticateUser from '@/hooks/useAuthenticateUser';

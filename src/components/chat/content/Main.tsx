@@ -5,12 +5,27 @@ import { useUserStore } from '@/stores/userStore';
 import Copyright from '@/components/shared/Copyright';
 import Logo from '@/components/shared/Logo';
 import HamburgerButton from '@/components/UI/HamburgerButton';
-import { getAvatarLink } from '@/utils/stringUtils';
+import { getAvatarLink } from '@/utils/helpers';
+import { useEffect } from 'react';
+import socket from '@/socket';
+import { useMessageStore } from '@/stores/messageStore';
 
 const Main = () => {
    const { selectedUser } = useUserStore();
+   const { addMessage } = useMessageStore();
 
    const avatar = getAvatarLink(selectedUser.avatar as string);
+
+   useEffect(() => {
+      socket.on('message', message => {
+         addMessage(message);
+      });
+
+      return () => {
+         socket.off('connect');
+         socket.off('message');
+      };
+   }, [addMessage]);
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">

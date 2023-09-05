@@ -1,6 +1,6 @@
 import { ColorRing } from 'react-loader-spinner';
 
-const Loading = ({ renderOnEmptyPage }: { renderOnEmptyPage: boolean }) => {
+const Loading = ({ renderOnEmptyPage }: { renderOnEmptyPage?: boolean }) => {
    return (
       <div
          className={`flex justify-center items-center ${

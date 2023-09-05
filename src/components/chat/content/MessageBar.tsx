@@ -4,15 +4,15 @@ import EmojiPicker from 'emoji-picker-react';
 import { FormEvent, useState } from 'react';
 import emoji from '@/assets/emoji.png';
 import { useModalStore } from '@/stores/togglerStore';
-import { useMessageStore } from '@/stores/messageStore';
 import { useUserStore } from '@/stores/userStore';
+import { getPrivateRoomName } from '@/utils/helpers';
+import socket from '@/socket';
 
 const MessageBar = () => {
    const [messageText, setMessageText] = useState('');
 
    const { setDisplayEmojis, displayEmojis } = useModalStore();
-   const { addMessage } = useMessageStore();
-   const { user } = useUserStore();
+   const { user, selectedUser } = useUserStore();
 
    const addEmoji = ({ emoji }: { emoji: string }) => {
       setMessageText(prevText => prevText + emoji);
@@ -21,15 +21,16 @@ const MessageBar = () => {
    const sendMessage = (event: FormEvent) => {
       event.preventDefault();
       if (messageText) {
-         addMessage({
-            id: 'fdsfds',
+         const room = getPrivateRoomName(user.id, selectedUser.id);
+
+         socket.emit('message', {
+            room,
             sender: user.id,
-            receiver: 'sdadsad',
+            receiver: selectedUser.id,
             content: messageText,
          });
          setMessageText('');
       }
-      console.log(user);
    };
 
    return (

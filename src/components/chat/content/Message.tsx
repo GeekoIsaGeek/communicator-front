@@ -1,7 +1,7 @@
 import avatarPlaceholder from '@/assets/avatar.jpg';
 import { useUserStore } from '@/stores/userStore';
 import { Message as IMessage } from '@/types/messageStoreTypes';
-import { getAvatarLink } from '@/utils/stringUtils';
+import { getAvatarLink } from '@/utils/helpers';
 
 const Message = ({ message }: { message: IMessage }) => {
    const { user, selectedUser } = useUserStore();

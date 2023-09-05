@@ -1,5 +1,4 @@
 const Logo = ({ onChat }: { onChat?: boolean }) => {
-   console.log(onChat);
    return (
       <h1
          className={` font-bold logo-gradient font-lobster  ${

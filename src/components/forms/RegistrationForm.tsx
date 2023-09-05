@@ -4,11 +4,11 @@ import FormField from '@/components/UI/FormField';
 import SubmitButton from '@/components/UI/SubmitButton';
 import { Link } from 'react-router-dom';
 import ValidationRules from '@/config/validationRules';
-import Error from '@/components/UI/Error';
+import Error from '@/components/shared/Error';
 import { useState } from 'react';
 import ImageSelector from '@/components/UI/ImageSelector';
 import useRegisterUser from '@/hooks/useRegisterUser';
-import { capitalize } from '@/utils/stringUtils';
+import { capitalize } from '@/utils/helpers';
 
 const RegistrationForm = () => {
    const { register, handleSubmit, formState, watch } =
