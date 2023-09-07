@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@/stores/userStore';
-import request from '@/config/axiosInstance';
 import axios from 'axios';
+import request from '@/config/axiosInstance';
 
 const useRegisterUser = () => {
-   const navigate = useNavigate();
    const { setUser } = useUserStore();
 
    const sendRequest = async (formData: FormData) => {
@@ -14,12 +12,14 @@ const useRegisterUser = () => {
          const { data } = await request.post('/register', formData, {
             headers: {
                'Content-Type': 'multipart/form-data',
+               Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem('token') as string,
+               )}`,
             },
          });
 
          localStorage.setItem('token', JSON.stringify(data.token));
-         setUser({ ...data, isAuthenticated: true });
-         navigate('/chat');
+         setUser(data);
       } catch (err) {
          if (axios.isAxiosError(err)) {
             error = err.response ? err.response.data.error : err.message;

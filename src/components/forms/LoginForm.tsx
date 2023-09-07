@@ -22,7 +22,6 @@ const LoginForm = () => {
          email: values.email,
          password: values.password,
       });
-
       if (error) {
          setError(error);
          return;

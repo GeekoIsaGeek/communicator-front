@@ -40,7 +40,13 @@ export const useUserStore = create<UserState>(set => ({
 
    users: initialState.users,
    fetchUsers: async () => {
-      const users = await request.get('/users');
+      const users = await request.get('/users', {
+         headers: {
+            Authorization: `Bearer ${JSON.parse(
+               localStorage.getItem('token') as string,
+            )}`,
+         },
+      });
       set({ users: users.data });
    },
 

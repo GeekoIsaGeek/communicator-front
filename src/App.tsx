@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import Loading from '@/components/shared/Loading';
 import useValidateToken from '@/hooks/useValidateToken';
 import { useUserStore } from '@/stores/userStore';
+import request from '@/config/axiosInstance';
 import useInitializeTheme from './hooks/useInitializeTheme';
-import request from './config/axiosInstance';
 
 const App = () => {
    const { isTokenExpired } = useValidateToken();
@@ -17,13 +17,20 @@ const App = () => {
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['user'],
       queryFn: async () => {
-         const response = await request.get('/user');
+         const response = await request.get('/user', {
+            headers: {
+               Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem('token') as string,
+               )}`,
+            },
+         });
          return response.data;
       },
       enabled: false,
    });
 
    useEffect(() => {
+      console.log('yet');
       if (data) {
          setUser({ ...data, isAuthenticated: true });
       }
@@ -33,6 +40,7 @@ const App = () => {
       refetch();
       if (isLoading) return <Loading renderOnEmptyPage />;
    }
+
    return <RouterProvider router={router} />;
 };
 

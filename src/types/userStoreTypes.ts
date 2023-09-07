@@ -16,7 +16,7 @@ export interface Friend {
 
 export interface UserState {
    user: User;
-   setUser: (user: Omit<User, 'isAuthenticated'>) => void;
+   setUser: (user: User) => void;
    clearUserState: () => void;
    searchString: string;
    setSearchString: (searchString: string) => void;
