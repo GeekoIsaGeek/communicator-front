@@ -1,8 +1,8 @@
 import preferencesIcon from '@/assets/preferences.svg';
-import { useModalStore } from '@/stores/togglerStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 
 const PreferencesButton = () => {
-   const { displayPreferences, setDisplayPreferences } = useModalStore();
+   const { displayPreferences, setDisplayPreferences } = useTogglerStore();
 
    return (
       <button

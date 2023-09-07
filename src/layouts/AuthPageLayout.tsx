@@ -3,10 +3,10 @@ import Copyright from '@/components/shared/Copyright';
 import { ReactNode } from 'react';
 import PreferencesButton from '@/components/UI/PreferencesButton';
 import PreferencesMenu from '@/components/shared/PreferencesMenu';
-import { useModalStore } from '@/stores/togglerStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 
 const AuthPageLayout = ({ children }: { children: ReactNode }) => {
-   const { displayPreferences } = useModalStore();
+   const { displayPreferences } = useTogglerStore();
    return (
       <div className="h-screen w-full flex items-center justify-between flex-col gap-7 bg-purplishWhite dark:bg-[#06060B] overflow-y-auto">
          <div className="absolute right-4 top-4">

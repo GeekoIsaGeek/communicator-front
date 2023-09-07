@@ -32,7 +32,7 @@ export default {
             xxs: '280px',
          },
          fontFamily: {
-            lobster: ['Lobster Two', 'cursive'],
+            lobster: ['Lobster Two', 'system'],
          },
       },
    },

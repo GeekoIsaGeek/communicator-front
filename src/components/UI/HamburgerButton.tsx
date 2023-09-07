@@ -1,8 +1,8 @@
 import navIcon from '@/assets/nav.png';
-import { useModalStore } from '@/stores/togglerStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 
 const HamburgerButton = () => {
-   const { setDisplaySidebar, displaySidebar } = useModalStore();
+   const { setDisplaySidebar, displaySidebar } = useTogglerStore();
 
    return (
       <button className="cursor-pointer md:hidden">

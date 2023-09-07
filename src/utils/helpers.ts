@@ -21,7 +21,6 @@ export const fetchData = async (url: string) => {
             )}`,
          },
       });
-      console.log(data);
       return data;
    } catch (error) {
       throw new Error('Fetching failed: ' + (error as Error).message);

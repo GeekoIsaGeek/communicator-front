@@ -2,15 +2,15 @@ import User from '@/components/chat/sidebar/User';
 import Search from '@/components/UI/Input';
 import SearchIcon from '@/components/icons/SearchIcon';
 import PreferencesMenu from '@/components/shared/PreferencesMenu';
-import { useModalStore } from '@/stores/togglerStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 import PreferencesButton from '@/components/UI/PreferencesButton';
 import { useUserStore } from '@/stores/userStore';
 import { useEffect } from 'react';
 import { getAvatarLink } from '@/utils/helpers';
 
 const Sidebar = () => {
-   const { displayPreferences } = useModalStore();
-   const { displaySidebar, setDisplaySidebar } = useModalStore();
+   const { displayPreferences } = useTogglerStore();
+   const { displaySidebar, setDisplaySidebar } = useTogglerStore();
 
    const {
       setSearchString,

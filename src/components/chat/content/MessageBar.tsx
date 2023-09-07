@@ -3,7 +3,7 @@ import sendIcon from '@/assets/sendIcon.svg';
 import EmojiPicker from 'emoji-picker-react';
 import { FormEvent, useState } from 'react';
 import emoji from '@/assets/emoji.png';
-import { useModalStore } from '@/stores/togglerStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 import { useUserStore } from '@/stores/userStore';
 import { getPrivateRoomName } from '@/utils/helpers';
 import socket from '@/socket';
@@ -11,7 +11,7 @@ import socket from '@/socket';
 const MessageBar = () => {
    const [messageText, setMessageText] = useState('');
 
-   const { setDisplayEmojis, displayEmojis } = useModalStore();
+   const { setDisplayEmojis, displayEmojis } = useTogglerStore();
    const { user, selectedUser } = useUserStore();
 
    const addEmoji = ({ emoji }: { emoji: string }) => {
