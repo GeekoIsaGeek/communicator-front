@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { UserState } from '@/types/userStoreTypes';
-import request from '@/config/axiosInstance';
+import { fetchData } from '@/utils/helpers';
 
 const initialState: UserState = {
    user: {
@@ -40,14 +40,8 @@ export const useUserStore = create<UserState>(set => ({
 
    users: initialState.users,
    fetchUsers: async () => {
-      const users = await request.get('/users', {
-         headers: {
-            Authorization: `Bearer ${JSON.parse(
-               localStorage.getItem('token') as string,
-            )}`,
-         },
-      });
-      set({ users: users.data });
+      const users = await fetchData('/users');
+      set({ users });
    },
 
    searchString: initialState.searchString,

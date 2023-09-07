@@ -1,6 +1,6 @@
 import { MessageStore } from '@/types/messageStoreTypes';
 import { create } from 'zustand';
-import request from '@/config/axiosInstance';
+import { fetchData } from '@/utils/helpers';
 
 export const useMessageStore = create<MessageStore>(set => ({
    messages: [],
@@ -14,13 +14,7 @@ export const useMessageStore = create<MessageStore>(set => ({
    fetchMessages: async (receiverId: string, senderId: string) => {
       set({ isLoading: true });
       const url = `/messages?receiver=${receiverId}&sender=${senderId}`;
-      const { data } = await request.get(url, {
-         headers: {
-            Authorization: `Bearer ${JSON.parse(
-               localStorage.getItem('token') as string,
-            )}`,
-         },
-      });
+      const data = await fetchData(url);
       set(() => ({
          messages: data,
          isLoading: false,
