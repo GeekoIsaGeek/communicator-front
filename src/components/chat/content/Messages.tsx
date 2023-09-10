@@ -8,23 +8,23 @@ import { useMessageStore } from '@/stores/messageStore';
 const Messages = () => {
    const chatWrapperRef = useRef<null | HTMLDivElement>(null);
    const { user, selectedUser } = useUserStore();
-   const { messages, isLoading, fetchMessages, setMessages } =
+   const { messages, isLoading, fetchMessages, setMessages, hasLoaded } =
       useMessageStore();
 
-   const scrollToBottom = () => {
-      if (chatWrapperRef.current) {
-         chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
-      }
-   };
-
    useEffect(() => {
-      scrollToBottom();
       fetchMessages(selectedUser._id, user._id);
 
       return () => {
          setMessages([]);
       };
    }, [fetchMessages, selectedUser._id, user._id, setMessages]);
+
+   useEffect(() => {
+      // scroll to bottom of chat
+      if (chatWrapperRef.current && hasLoaded) {
+         chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
+      }
+   }, [hasLoaded, messages]);
 
    return (
       <div

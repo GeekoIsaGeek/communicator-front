@@ -1,6 +1,6 @@
 import { useUserStore } from '@/stores/userStore';
-import request from '@/config/axiosInstance';
 import { Friend } from '@/types/userStoreTypes';
+import { postData } from '@/utils/helpers';
 
 interface ChatOptionsProps {
    id: string;
@@ -16,25 +16,18 @@ const ChatOptions = ({ id, hideMenu }: ChatOptionsProps) => {
 
    const deleteChat = async () => {
       hideMenu();
-      const { status, data } = await request.post(
-         '/connections/remove',
-         { connectionId: id },
-         {
-            headers: {
-               Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem('token') as string,
-               )}
-            `,
-            },
-         },
-      );
+      try {
+         const data = await postData('/connections/remove', {
+            connectionId: id,
+         });
 
-      if (status === 200) {
          const connections = user.connections.filter(
             (connection: Friend) => connection._id !== data.removedConnectionId,
          );
          setUser({ ...user, connections });
          filterUsers();
+      } catch (error) {
+         console.error((error as Error).message);
       }
    };
 

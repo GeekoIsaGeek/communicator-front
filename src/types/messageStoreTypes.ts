@@ -11,5 +11,6 @@ export interface MessageStore {
    addMessage: (message: Message) => void;
    setMessages: (messages: Message[]) => void;
    isLoading: boolean;
+   hasLoaded: boolean;
    fetchMessages: (receiver: string, sender: string) => void;
 }
