@@ -2,14 +2,17 @@ import LogoutIcon from '@/assets/logout.png';
 import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@/stores/userStore';
+import { useTogglerStore } from '@/stores/togglerStore';
 
 const LogoutButton = () => {
    const { clearUserState } = useUserStore();
    const navigate = useNavigate();
+   const { setDisplayPreferences } = useTogglerStore();
 
    const logoutUser = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       clearUserState();
+      setDisplayPreferences(false);
       navigate('/login');
 
       localStorage.removeItem('token');

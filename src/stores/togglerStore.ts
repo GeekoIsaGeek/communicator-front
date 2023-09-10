@@ -4,12 +4,10 @@ interface TogglerStore {
    displayPreferences: boolean;
    displayEmojis: boolean;
    displaySidebar: boolean;
-   displayChatOptions: boolean;
 
    setDisplayPreferences: (show: boolean) => void;
    setDisplayEmojis: (show: boolean) => void;
    setDisplaySidebar: (show: boolean) => void;
-   setDisplayChatOptions: (show: boolean) => void;
 }
 
 export const useTogglerStore = create<TogglerStore>(set => ({
@@ -22,8 +20,4 @@ export const useTogglerStore = create<TogglerStore>(set => ({
 
    displaySidebar: false,
    setDisplaySidebar: (show: boolean) => set(() => ({ displaySidebar: show })),
-
-   displayChatOptions: false,
-   setDisplayChatOptions: (show: boolean) =>
-      set(() => ({ displayChatOptions: show })),
 }));

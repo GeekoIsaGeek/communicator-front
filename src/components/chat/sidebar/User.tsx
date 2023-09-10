@@ -1,17 +1,18 @@
 import avatarPlaceholder from '@/assets/avatar.jpg';
 import ListIcon from '@/components/icons/ListIcon';
 import ChatOptions from '@/components/chat/sidebar/ChatOptions';
-import { useTogglerStore } from '@/stores/togglerStore';
+import { useState } from 'react';
 
 interface UserProps {
+   id: string;
    avatar: string;
    name: string;
    isChatHeader?: boolean;
    clickHandler?: () => void;
 }
 
-const User = ({ avatar, name, isChatHeader, clickHandler }: UserProps) => {
-   const { displayChatOptions, setDisplayChatOptions } = useTogglerStore();
+const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
+   const [displayChatOptions, setDisplayChatOptions] = useState(false);
 
    const showChatOptions = (event: React.MouseEvent) => {
       event.stopPropagation();
@@ -40,11 +41,16 @@ const User = ({ avatar, name, isChatHeader, clickHandler }: UserProps) => {
          </div>
          {!isChatHeader && (
             <div
-               className="p-1 hover:bg-slate-200 dark:hover:bg-slate-300 transition-colors ease-out duration-200 rounded-full cursor-pointer relative z-0"
+               className="p-1 hover:bg-slate-200 dark:hover:bg-slate-300 transition-colors ease-out duration-200 rounded-full cursor-pointer relative "
                onClick={event => showChatOptions(event)}
             >
                <ListIcon />
-               {displayChatOptions && <ChatOptions />}
+               {displayChatOptions && (
+                  <ChatOptions
+                     id={id}
+                     hideMenu={() => setDisplayChatOptions(false)}
+                  />
+               )}
             </div>
          )}
       </div>

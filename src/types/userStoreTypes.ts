@@ -5,7 +5,7 @@ export interface User {
    token?: string;
    avatar?: string;
    isAuthenticated: boolean;
-   connections: [];
+   connections: [] | Friend[];
 }
 
 export interface Friend {

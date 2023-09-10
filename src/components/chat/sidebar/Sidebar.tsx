@@ -64,6 +64,7 @@ const Sidebar = () => {
                      setSelectedUser(user);
                      setDisplaySidebar(false);
                   }}
+                  id={user._id}
                />
             ))}
          </ul>
