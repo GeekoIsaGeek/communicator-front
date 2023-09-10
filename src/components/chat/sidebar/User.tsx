@@ -1,11 +1,12 @@
 import avatarPlaceholder from '@/assets/avatar.jpg';
 import ListIcon from '@/components/icons/ListIcon';
-import ChatOptions from '@/components/chat/sidebar/ChatOptions';
+import ChatOptions from '@/components/chat/sidebar/chat-options/Options';
 import { useState } from 'react';
+import { useUserStore } from '@/stores/userStore';
 
 interface UserProps {
    id: string;
-   avatar: string;
+   avatar: string | null;
    name: string;
    isChatHeader?: boolean;
    clickHandler?: () => void;
@@ -13,11 +14,15 @@ interface UserProps {
 
 const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
    const [displayChatOptions, setDisplayChatOptions] = useState(false);
+   const { user } = useUserStore();
 
    const showChatOptions = (event: React.MouseEvent) => {
       event.stopPropagation();
       setDisplayChatOptions(!displayChatOptions);
    };
+
+   const isConnection =
+      user.connections.findIndex(connection => connection._id === id) !== -1;
 
    return (
       <div
@@ -39,7 +44,8 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
                {name}
             </p>
          </div>
-         {!isChatHeader && (
+
+         {!isChatHeader && isConnection && (
             <div
                className="p-1 hover:bg-slate-200 dark:hover:bg-slate-300 transition-colors ease-out duration-200 rounded-full cursor-pointer relative "
                onClick={event => showChatOptions(event)}
