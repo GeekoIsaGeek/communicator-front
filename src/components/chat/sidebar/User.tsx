@@ -43,7 +43,7 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
             <p className="text-md font-bolder text-gray-600 dark:text-white">
                {name}
             </p>
-            {onlineUsers[id] && (
+            {onlineUsers[id] && !isChatHeader && (
                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             )}
          </div>
