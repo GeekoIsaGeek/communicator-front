@@ -25,6 +25,7 @@ const initialState: UserState = {
       avatar: '',
    },
    setSelectedUser: () => {},
+   clearSelectedUser: () => {},
    onlineUsers: {},
    setOnlineUsers: () => {},
 };
@@ -70,6 +71,9 @@ export const useUserStore = create<UserState>(set => ({
       set(() => ({
          selectedUser,
       })),
+   clearSelectedUser: () => {
+      set(() => ({ selectedUser: initialState.selectedUser }));
+   },
 
    onlineUsers: initialState.onlineUsers,
    setOnlineUsers: onlineUsers => {

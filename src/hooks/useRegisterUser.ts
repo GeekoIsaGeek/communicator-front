@@ -19,7 +19,6 @@ const useRegisterUser = () => {
          });
 
          localStorage.setItem('token', JSON.stringify(data.token));
-         localStorage.setItem('userId', JSON.stringify(data._id));
          setUser(data);
       } catch (err) {
          if (axios.isAxiosError(err)) {

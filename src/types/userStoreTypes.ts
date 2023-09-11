@@ -26,6 +26,7 @@ export interface UserState {
    filterUsers: () => void;
    selectedUser: Friend;
    setSelectedUser: (user: Friend) => void;
+   clearSelectedUser: () => void;
    onlineUsers: { [key: string]: string };
    setOnlineUsers: (users: { [key: string]: string }) => void;
 }

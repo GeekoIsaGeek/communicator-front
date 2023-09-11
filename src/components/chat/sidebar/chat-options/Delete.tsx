@@ -4,7 +4,7 @@ import { Friend } from '@/types/userStoreTypes';
 import { ChatOptionsProps } from '@/types/sharedPropTypes';
 
 const Delete = ({ hideMenu, id }: ChatOptionsProps) => {
-   const { setUser, filterUsers, user } = useUserStore();
+   const { setUser, filterUsers, user, clearSelectedUser } = useUserStore();
 
    const deleteChat = async () => {
       hideMenu();
@@ -18,6 +18,7 @@ const Delete = ({ hideMenu, id }: ChatOptionsProps) => {
          );
          setUser({ ...user, connections });
          filterUsers();
+         clearSelectedUser();
       } catch (error) {
          console.error((error as Error).message);
       }

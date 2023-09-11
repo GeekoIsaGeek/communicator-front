@@ -25,7 +25,7 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
       user.connections.findIndex(connection => connection._id === id) !== -1;
 
    return (
-      <div
+      <li
          className={`py-2 px-2 flex items-center justify-between gap-4 ${
             !isChatHeader &&
             'hover:bg-[#f3f3f388] cursor-pointer rounded-lg transition-colors duration-200 ease-in-out dark:hover:bg-gray-700'
@@ -62,7 +62,7 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
                )}
             </div>
          )}
-      </div>
+      </li>
    );
 };
 

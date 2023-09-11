@@ -5,13 +5,14 @@ import { useUserStore } from '@/stores/userStore';
 import Copyright from '@/components/shared/Copyright';
 import Logo from '@/components/shared/Logo';
 import HamburgerButton from '@/components/UI/HamburgerButton';
-import { getAvatarLink } from '@/utils/helpers';
+import { fetchData, getAvatarLink } from '@/utils/helpers';
 import { useEffect } from 'react';
 import { useMessageStore } from '@/stores/messageStore';
 import socket from '@/socket';
 
 const Main = () => {
-   const { selectedUser, user, setOnlineUsers } = useUserStore();
+   const { selectedUser, user, setOnlineUsers, setUser, filterUsers } =
+      useUserStore();
    const { addMessage } = useMessageStore();
 
    const avatar = getAvatarLink(selectedUser.avatar as string);
@@ -26,15 +27,18 @@ const Main = () => {
          setOnlineUsers(onlineUsers);
       });
 
-      socket.on('message', message => {
+      socket.on('message', async message => {
          addMessage(message);
+         const data = await fetchData('/connections');
+         setUser({ ...user, connections: data });
+         filterUsers();
       });
 
       return () => {
          socket.disconnect();
          socket.off('message');
       };
-   }, [addMessage, user._id, setOnlineUsers]);
+   }, [addMessage, user._id, setOnlineUsers, setUser, filterUsers, user]);
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
