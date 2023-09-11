@@ -25,6 +25,8 @@ const initialState: UserState = {
       avatar: '',
    },
    setSelectedUser: () => {},
+   onlineUsers: {},
+   setOnlineUsers: () => {},
 };
 
 export const useUserStore = create<UserState>(set => ({
@@ -68,4 +70,9 @@ export const useUserStore = create<UserState>(set => ({
       set(() => ({
          selectedUser,
       })),
+
+   onlineUsers: initialState.onlineUsers,
+   setOnlineUsers: onlineUsers => {
+      set({ onlineUsers });
+   },
 }));

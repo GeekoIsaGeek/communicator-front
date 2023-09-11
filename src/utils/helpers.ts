@@ -9,10 +9,6 @@ export const getAvatarLink = (path: string) => {
    return `${import.meta.env.VITE_API_URL}${path}`;
 };
 
-export const getPrivateRoomName = (senderId: string, receiverId: string) => {
-   return [senderId, receiverId].sort().join('_');
-};
-
 export const fetchData = async (url: string) => {
    try {
       const { data } = await request.get(url, {

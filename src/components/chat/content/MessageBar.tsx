@@ -5,7 +5,6 @@ import { FormEvent, useState } from 'react';
 import emoji from '@/assets/emoji.png';
 import { useTogglerStore } from '@/stores/togglerStore';
 import { useUserStore } from '@/stores/userStore';
-import { getPrivateRoomName } from '@/utils/helpers';
 import socket from '@/socket';
 
 const MessageBar = () => {
@@ -21,10 +20,7 @@ const MessageBar = () => {
    const sendMessage = (event: FormEvent) => {
       event.preventDefault();
       if (messageText) {
-         const room = getPrivateRoomName(user._id, selectedUser._id);
-
          socket.emit('message', {
-            room,
             sender: user._id,
             receiver: selectedUser._id,
             content: messageText,

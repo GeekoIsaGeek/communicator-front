@@ -14,7 +14,7 @@ interface UserProps {
 
 const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
    const [displayChatOptions, setDisplayChatOptions] = useState(false);
-   const { user } = useUserStore();
+   const { user, onlineUsers } = useUserStore();
 
    const showChatOptions = (event: React.MouseEvent) => {
       event.stopPropagation();
@@ -26,7 +26,7 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
 
    return (
       <div
-         className={`py-2 px-2 flex items-center justify-between ${
+         className={`py-2 px-2 flex items-center justify-between gap-4 ${
             !isChatHeader &&
             'hover:bg-[#f3f3f388] cursor-pointer rounded-lg transition-colors duration-200 ease-in-out dark:hover:bg-gray-700'
          }`}
@@ -43,6 +43,9 @@ const User = ({ avatar, name, isChatHeader, clickHandler, id }: UserProps) => {
             <p className="text-md font-bolder text-gray-600 dark:text-white">
                {name}
             </p>
+            {onlineUsers[id] && (
+               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            )}
          </div>
 
          {!isChatHeader && isConnection && (

@@ -7,25 +7,34 @@ import Logo from '@/components/shared/Logo';
 import HamburgerButton from '@/components/UI/HamburgerButton';
 import { getAvatarLink } from '@/utils/helpers';
 import { useEffect } from 'react';
-import socket from '@/socket';
 import { useMessageStore } from '@/stores/messageStore';
+import socket from '@/socket';
 
 const Main = () => {
-   const { selectedUser } = useUserStore();
+   const { selectedUser, user, setOnlineUsers } = useUserStore();
    const { addMessage } = useMessageStore();
 
    const avatar = getAvatarLink(selectedUser.avatar as string);
 
    useEffect(() => {
+      socket.io.opts.query = {
+         userId: user._id,
+      };
+      socket.connect();
+
+      socket.on('onlineUsers', onlineUsers => {
+         setOnlineUsers(onlineUsers);
+      });
+
       socket.on('message', message => {
          addMessage(message);
       });
 
       return () => {
-         socket.off('connect');
+         socket.disconnect();
          socket.off('message');
       };
-   }, [addMessage]);
+   }, [addMessage, user._id, setOnlineUsers]);
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
@@ -45,7 +54,12 @@ const Main = () => {
          ) : (
             <>
                <div className="px-2 shadow dark:shadow-chatHeaderDark flex justify-between items-center dark:bg-sidebarDark">
-                  <User avatar={avatar} name={selectedUser.name} isChatHeader />
+                  <User
+                     avatar={avatar}
+                     name={selectedUser.name}
+                     isChatHeader
+                     id={user._id}
+                  />
                   <HamburgerButton />
                </div>
                <Messages />
