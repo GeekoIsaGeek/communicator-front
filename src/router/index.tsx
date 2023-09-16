@@ -1,5 +1,5 @@
 import {
-   createBrowserRouter,
+   createHashRouter,
    createRoutesFromElements,
    Route,
 } from 'react-router-dom';
@@ -10,7 +10,7 @@ import Authorized from '@/components/navigation-guards/Authorized';
 import NotFound from '@/pages/NotFound';
 import Unauthorized from '@/components/navigation-guards/Unauthorized';
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
    createRoutesFromElements(
       <>
          <Route path="/" element={<Authorized />}>
