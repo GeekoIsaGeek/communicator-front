@@ -1,6 +1,6 @@
 import Input from '@/components/UI/Input';
 import sendIcon from '@/assets/sendIcon.svg';
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker, { Theme } from 'emoji-picker-react';
 import { FormEvent, useState } from 'react';
 import emoji from '@/assets/emoji.png';
 import { useTogglerStore } from '@/stores/togglerStore';
@@ -43,6 +43,13 @@ const MessageBar = () => {
                   <EmojiPicker
                      onEmojiClick={emojiObj => addEmoji(emojiObj)}
                      lazyLoadEmojis={true}
+                     theme={
+                        document
+                           .querySelector('#root')
+                           ?.classList.contains('dark')
+                           ? Theme.DARK
+                           : Theme.LIGHT
+                     }
                   />
                </div>
             )}

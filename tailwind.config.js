@@ -33,6 +33,7 @@ export default {
          },
          fontFamily: {
             lobster: ['Lobster Two', 'system'],
+            lato: ['lato', 'sans-serif'],
          },
       },
    },
