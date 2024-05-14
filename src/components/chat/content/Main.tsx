@@ -25,7 +25,6 @@ const Main = () => {
       socket.connect();
 
       socket.on('onlineUsers', onlineUsers => {
-         console.log(onlineUsers);
          setOnlineUsers(onlineUsers);
       });
 
