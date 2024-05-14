@@ -20,10 +20,12 @@ const Main = () => {
    useEffect(() => {
       socket.io.opts.query = {
          userId: user._id,
+         token: JSON.parse(localStorage.getItem('token') as string),
       };
       socket.connect();
 
       socket.on('onlineUsers', onlineUsers => {
+         console.log(onlineUsers);
          setOnlineUsers(onlineUsers);
       });
 
@@ -38,7 +40,7 @@ const Main = () => {
          socket.disconnect();
          socket.off('message');
       };
-   }, [addMessage, user._id, setOnlineUsers, setUser, filterUsers, user]);
+   }, [addMessage, setOnlineUsers, setUser, filterUsers, user]);
 
    return (
       <main className="w-full flex flex-col max-h-screen justify-between dark:bg-chat">
